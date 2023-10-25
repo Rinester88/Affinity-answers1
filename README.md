@@ -50,9 +50,36 @@ c. Identifying the Rice Variety with the Longest DNA Sequence
 
 On the ``ncbi_id``, the JOIN operation between the rfamseq and taxonomy tables is correctly established. The species names that include the phrase 'rice' are then filtered. I may get the rice kind with the longest DNA sequence by utilising GROUP BY and the aggregate function MAX.
 
+
 d. Results Pagination for Family Names and DNA Sequence Lengths
 
 I started by joining the family table to the full_region table with the ``rfam_acc column``, which is a proper relationship.
 Then enlarged the join to include the rfamseq table using the ``rfamseq_acc`` column to obtain the DNA sequence lengths.
 last query in this section effectively employs the GROUP BY clause and the HAVING clause to filter out families with DNA sequence lengths larger than 1,000,000.
 I used the LIMIT and OFFSET clauses correctly for pagination. Because the 9th page has 15 results per page, you skip the first 8*15 = 120 results, therefore the OFFSET 120.
+
+3. This question is to test your aptitude for writing small shell scripts on Unix. You are given this URL amfiindia.com/spages/NAVAll.txt. Write a shell script that extracts the Scheme Name and Asset Value fields only and saves them in a tsv file. And ever wondered if this data should not be stored in JSON?
+
+I Used GIT BASH because it more easier to use especially for Windows 
+- GIT BASH Run Git commands as if they were on Linux or macOS.
+- Git Bash provides a Bash emulation environment for running command-line commands comparable to those used on Unix-based systems. 
+  this is really helpful for developers who are used to Unix-like command-line operations but are working on a Windows PC.
+- Git Bash allows developers to have a consistent command-line interface across platforms. When working on a project with several contributors, this can streamline collaboration and reduce platform-related concerns.
+-  making their workflow more efficient.
+-  Git Bash comes with an SSH client, making it easier for users to connect to remote servers and manage Git repositories over SSH.
+
+Using the URL 
+``url="https://www.amfiindia.com/spages/NAVALL.txt"``
+fetching the data from the URL 
+``curl -L -A "Mozilla/5.0" "$url" -o NAVALL.txt ``
+- Used Mozilla/5.0 because user-agent to mimic a common browser. Some websites might block or return different content based on the user-agent, so this can be useful to get around such restrictions.
+To see the Data
+``cat NAVALL.txt``
+To see first 10 lines of loaded data
+``head NAVALL.txt``
+Extract the Scheme name and Asset Value and save it into the TSV file
+``if [[ ! -f NAVALL.txt ]]; then
+    echo "NAVALL.txt not found!"
+    exit 1
+fi
+awk -F';' '{print $2 "\t" $5}' NAVALL.txt > extracted_data.tsv``
