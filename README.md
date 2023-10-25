@@ -68,16 +68,16 @@ I Used GIT BASH because it more easier to use especially for Windows
 -  making their workflow more efficient.
 -  Git Bash comes with an SSH client, making it easier for users to connect to remote servers and manage Git repositories over SSH.
 
-Using the URL 
+-  Using the URL 
 ``url="https://www.amfiindia.com/spages/NAVALL.txt"``
-fetching the data from the URL 
+- fetching the data from the URL 
 ``curl -L -A "Mozilla/5.0" "$url" -o NAVALL.txt ``
 - Used Mozilla/5.0 because user-agent to mimic a common browser. Some websites might block or return different content based on the user-agent, so this can be useful to get around such restrictions.
-To see the Data
+- To see the Data
 ``cat NAVALL.txt``
-To see first 10 lines of loaded data
+- To see first 10 lines of loaded data
 ``head NAVALL.txt``
-Extract the Scheme name and Asset Value and save it into the TSV file
+- Extract the Scheme name and Asset Value and save it into the TSV file
 ``if [[ ! -f NAVALL.txt ]]; then
     echo "NAVALL.txt not found!"
     exit 1
